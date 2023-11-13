@@ -16,7 +16,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/lsssantbox/ec2info
-cd ec2-info
+cd ec2info
 make run 
 ```
 
