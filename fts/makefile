@@ -9,7 +9,7 @@ help:
 	@echo "  make lint       - Run linters"
 	@echo "  make test       - Run unit tests"
 	@echo "  make build      - Build the application"
-	@echo "  make run        - Build and run the application"
+	@echo "  make run        - Download deps build and run the application"
 	@echo "  make clean      - Remove built binaries"
 
 # Download dependencies
@@ -29,7 +29,7 @@ build: clean
 	@go build -o ec2Info
 
 # Build and run the application
-run: build
+run: deps build
 	@./ec2Info
 
 # Remove built binaries

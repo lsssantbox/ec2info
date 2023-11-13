@@ -1,4 +1,4 @@
-module github.com/lucass4/fts
+module github.com/lsssantbox/ec2info
 
 go 1.19
 
