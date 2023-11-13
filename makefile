@@ -29,7 +29,7 @@ build: clean
 	@go build -o ec2Info
 
 # Build and run the application
-run: build
+run: deps build
 	@./ec2Info
 
 # Remove built binaries
