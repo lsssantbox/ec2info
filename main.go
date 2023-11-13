@@ -180,9 +180,9 @@ func main() {
 	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond) // Build our new spinner
 	s.Prefix = "Gather information about all of the instances in the current region.: "
 
-	s.Start() // Start the spinner
+	s.Start()      // Start the spinner
+	defer s.Stop() // Stop the spinner
 	if err := runApp(context.TODO()); err != nil {
 		log.Fatal(err)
 	}
-	s.Stop() // Stop the spinner
 }
