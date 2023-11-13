@@ -176,7 +176,6 @@ func runApp(ctx context.Context) error {
 }
 
 func main() {
-
 	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond) // Build our new spinner
 	s.Prefix = "Gather information about all of the instances in the current region.: "
 
