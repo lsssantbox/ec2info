@@ -12,8 +12,6 @@ This Go application retrieves information about EC2 instances and their associat
 
 ## Getting Started
 
-Clone the repository:
-
 ```bash
 git clone https://github.com/lsssantbox/ec2info
 cd ec2info
