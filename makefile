@@ -21,7 +21,7 @@ lint:
 	@golangci-lint run
 
 # Run unit tests
-test:
+test: deps
 	@go test -v ./...
 
 # Build the application
