@@ -5,10 +5,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
+
+	"github.com/briandowns/spinner"
 )
 
 // ImageInfo representation
@@ -147,17 +150,25 @@ func runApp(ctx context.Context) error {
 	ec2Client := NewEC2Client(cfg)
 	instancesInfo, err := ec2Client.GetInstances(ctx)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to get instances: %w", err)
+	}
+
+	if len(instancesInfo.Reservations) == 0 {
+		return fmt.Errorf("no running instances were found")
 	}
 
 	amiInfo, err := ec2Client.AMI().GatherAMIInfo(ctx, instancesInfo)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to gather AMI info: %w", err)
+	}
+
+	if len(amiInfo) == 0 {
+		return fmt.Errorf("no Amazon Machine Images (AMIs) were found for the running instances")
 	}
 
 	amiInfoJSON, err := PrettyString(amiInfo)
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to pretty print AMI info: %w", err)
 	}
 
 	fmt.Println(amiInfoJSON)
@@ -165,9 +176,13 @@ func runApp(ctx context.Context) error {
 }
 
 func main() {
-	ctx := context.TODO()
 
-	if err := runApp(ctx); err != nil {
+	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond) // Build our new spinner
+	s.Prefix = "Gather information about all of the instances in the current region.: "
+
+	s.Start() // Start the spinner
+	if err := runApp(context.TODO()); err != nil {
 		log.Fatal(err)
 	}
+	s.Stop() // Stop the spinner
 }

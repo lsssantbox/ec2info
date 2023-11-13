@@ -1,4 +1,4 @@
-module github.com/lucass4/fts
+module github.com/lsssantbox/ec2info
 
 go 1.19
 
@@ -7,6 +7,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.22.1
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.130.0
 	github.com/awsdocs/aws-doc-sdk-examples/gov2/testtools v0.0.0-20231113175816-d36a8241fc11
+	github.com/briandowns/spinner v1.23.0
 	github.com/stretchr/testify v1.8.4
 )
 
@@ -197,6 +198,7 @@ require (
 	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/sync v0.5.0 // indirect
 	golang.org/x/sys v0.14.0 // indirect
+	golang.org/x/term v0.5.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/tools v0.15.0 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
